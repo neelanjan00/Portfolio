@@ -16,7 +16,7 @@ const BlogTile = (props) => {
         let dateArray = date.slice(0, 10).split("-")
         let year = dateArray.shift();
         dateArray.push(year)
-        return `Published: ${dateArray.join("/")}`;
+        return `Published: ${dateArray[1] + "/" + dateArray[0] + "/" + dateArray[2]}`;
     }
 
     const identifyParagraphs = content => {
