@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { useHistory } from 'react-router-dom'
 import React, { useState, useEffect, useRef } from 'react'
 import { CircularProgressbar } from 'react-circular-progressbar';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import ProjectsPreview from '../components/projects-preview/projects-preview'
 
 import 'swiper/swiper.scss'
@@ -16,7 +16,7 @@ import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
 import 'react-circular-progressbar/dist/styles.css';
 
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
 const Home = () => {
   const history = useHistory()
@@ -205,7 +205,20 @@ const Home = () => {
           <Swiper
             spaceBetween={30}
             slidesPerView={window.screen.width >= 1280 ? 3 : 1}
-            pagination={{ clickable: true }}>
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 2500 }}>
+            <SwiperSlide>
+              <div className="p-3" style={{
+                minHeight: '200px',
+                backgroundColor: 'rgb(230, 230, 230)'
+              }} >
+                <h5>LCS2, IIIT-DELHI</h5>
+                <h6>Dec, 2020 - Present</h6>
+                <p className="pt-2">
+                  Laboratory for Computational Social Systems is a research lab under IIIT-Delhi, responsible for advancements in ML and Social Computing.
+                </p>
+              </div>
+            </SwiperSlide>
             <SwiperSlide>
               <div className="p-3" style={{
                 minHeight: '200px',
