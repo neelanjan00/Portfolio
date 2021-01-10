@@ -80,7 +80,7 @@ const Footer = () => {
                             <div className="row">
                                 <div className="col-12">
                                     <h5 style={{ float: 'right' }} className="pt-3">
-                                        © Neelanjan Manna, 2020
+                                        © Neelanjan Manna, 2020 - {new Date().getFullYear()}
                                     </h5>
                                 </div>
                             </div>

@@ -39,6 +39,11 @@ const Navbar = (props) => {
                             <h5 style={{ display: 'inline' }}>Home</h5>
                         </span>
                     </Link>
+                    <Link to="/blogs">
+                        <span className="ml-5" style={{ color: 'white' }}>
+                            <h5 style={{ display: 'inline' }}>Blogs</h5>
+                        </span>
+                    </Link>
                     <Link to="/projects">
                         <span className="ml-5" style={{ color: 'white' }}>
                             <h5 style={{ display: 'inline' }}>Projects</h5>
