@@ -7,14 +7,14 @@ import Navbar from '../components/navbar/navbar'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useHistory } from 'react-router-dom'
 import React, { useState, useEffect, useRef } from 'react'
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar } from 'react-circular-progressbar'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import ProjectsPreview from '../components/projects-preview/projects-preview'
 
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
-import 'react-circular-progressbar/dist/styles.css';
+import 'react-circular-progressbar/dist/styles.css'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
