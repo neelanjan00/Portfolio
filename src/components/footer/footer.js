@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import emailjs from 'emailjs-com'
+import { getLinkedInIcon, getGithubIcon, getEmailIcon } from '../../assets/inline-svgs'
 
 const Footer = () => {
 
@@ -60,20 +61,20 @@ const Footer = () => {
                         <div className="col-lg-5 col-12 mt-5">
                             <div className="row">
                                 <div className="col-12">
-                                    <a href="https://www.github.com/neelanjan00" 
-                                       target="_blank" rel="noopener noreferrer">
-                                        <img src={require("../../assets/images/github.svg")}
-                                             alt="github" width="40" style={{ float: 'right' }} />
+                                    <a href="https://www.github.com/neelanjan00" target="_blank" rel="noopener noreferrer">
+                                        <div style={{'float': 'right'}}>
+                                            {getGithubIcon('white')}
+                                        </div>
                                     </a>
-                                    <a href="https://www.linkedin.com/in/neelanjan00" 
-                                       target="_blank" rel="noopener noreferrer">
-                                        <img src={require("../../assets/images/linkedin.svg")} alt="linkedin"
-                                            width="40" style={{ float: 'right' }} className="mr-5" />
+                                    <a href="https://www.linkedin.com/in/neelanjan00" target="_blank" rel="noopener noreferrer">
+                                        <div style={{'float': 'right'}} className="mt-1">
+                                            {getLinkedInIcon('white')}
+                                        </div>
                                     </a>
                                     <a href="mailto:neelanjanmanna@gmail.com">
-                                        <svg width="2.8em" height="2.8em" viewBox="0 0 16 16" className="bi bi-envelope mr-5" fill="#fff" xmlns="http://www.w3.org/2000/svg" style={{ float: 'right' }}>
-                                            <path fillRule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
-                                        </svg>
+                                        <div style={{'float': 'right'}}>
+                                            {getEmailIcon('white')}
+                                        </div>
                                     </a>
                                 </div>
                             </div>

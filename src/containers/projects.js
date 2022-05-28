@@ -37,8 +37,8 @@ const Projects = () => {
                                                 domain = {project.domain}
                                                 description = {project.description}
                                                 imageURL = {project.image}
-                                                github = { project.github ? project.github : null }
-                                                deployedLink = { project.deployedLink ? project.deployedLink : null }
+                                                github = { project.github ? project.github : null}
+                                                deployedLink = { project.deployedLink ? project.deployedLink : null}
                                                 key = {project.id} />
                     else
                         return <ProjectsPreview orientation="rl"
@@ -46,8 +46,8 @@ const Projects = () => {
                                                 domain = {project.domain}
                                                 description = {project.description}
                                                 imageURL = {project.image}
-                                                github = { project.github ? project.github : null }
-                                                deployedLink = { project.deployedLink ? project.deployedLink : null }
+                                                github = { project.github ? project.github : null}
+                                                deployedLink = { project.deployedLink ? project.deployedLink : null}
                                                 key = {project.id} />                     
                 })}
             </div>
