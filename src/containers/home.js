@@ -7,7 +7,6 @@ import Navbar from '../components/navbar/navbar'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useHistory } from 'react-router-dom'
 import React, { useState, useEffect, useRef } from 'react'
-import { CircularProgressbar } from 'react-circular-progressbar'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import ProjectsPreview from '../components/projects-preview/projects-preview'
 import { getGithubIcon, getLinkedInIcon, getEmailIcon } from '../assets/inline-svgs'
@@ -23,7 +22,8 @@ const Home = () => {
   const history = useHistory()
 
   const [vantaEffect, setVantaEffect] = useState(0)
-  var [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState([])
+  const [videos, setVideos] = useState([])
   const myRef = useRef(null)
 
   useEffect(() => {
@@ -66,6 +66,22 @@ const Home = () => {
     }
   }, [])
 
+  useEffect(() => {
+    db.collection('videos')
+      .orderBy('dateTime', 'desc')
+      .onSnapshot(snap => {
+        const newVideos = snap.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setVideos(newVideos)
+      })
+
+    return() =>{
+      setVideos({})
+    }
+  }, [])
+
   return (
     <div>
       <Navbar source="home" />
@@ -74,16 +90,21 @@ const Home = () => {
         <div style={{ backgroundImage: 'linear-gradient(transparent, rgba(0,0,0,0.8))', minHeight: '100vh' }}>
           <div className="container" style={{ display: 'flex', alignItems: 'center', minHeight: '100vh' }}>
             <div>
-              <h1 style={{ fontWeight: 800 }}>HELLO IT'S NEELANJAN MANNA</h1>
+              <h1 style={{ fontWeight: 800 }}>Hello, I'm Neelanjan!</h1>
               <h3>
                 <Typewriter
                   options={{
-                    pauseFor: 2500,
-                    strings: ["I'M A DATA SCIENCE ENTHUSIAST",
-                      "I'M A MACHINE LEARNING ENTHUSIAST",
-                      "I'M A FULL-STACK DEVELOPER"],
+                    pauseFor: 1000,
+                    strings: [
+                      "I'm a Software Development Engineer at Harness",
+                      "I'm a Cloud-Native Enthusiast",
+                      "I'm an Open-Source Contributor",
+                      "I develop LitmusChaos (a CNCF incubating project)"
+                    ],
                     autoStart: true,
                     loop: true,
+                    delay: 40,
+                    deleteSpeed: 20
                   }}
                 />
               </h3>
@@ -95,21 +116,34 @@ const Home = () => {
       <section style={{ color: 'white', minHeight: '100vh' }}>
         <div style={{ backgroundColor: 'black' }}>
           <div className="container">
+            <h1 style={{ fontWeight: 800 }}>ABOUT ME</h1>
             <div className="row">
-              <div className="col-lg-5" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src={require("../assets/images/portrait.png")}
-                  alt="portrait" width="400" className="img-fluid" />
+              <div className="col-lg-4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src={require("../assets/images/portrait.png")} alt="portrait" width="400" className="img-fluid" />
               </div>
-              <div className="col-lg-7">
-                <h1 style={{ fontWeight: 800 }}>ABOUT ME</h1>
+              <div className="col-lg-7 ml-1">
                 <h5 className="mb-0" style={{ textAlign: 'justify' }}>
-                  I have a dream. I have always wanted to impart a difference in people's lives, by empowering them with the goodness and opportunities they truly deserve.
-                  <br/><br/> 
-                  Being a computer science undergraduate, I realise my dream a little more each day, when I use my knowledge to solve crucial real world problems such as diagnosis of diseases, traffic accident prevention, blind and deaf assistance, to name a few.
-                  <br/><br/> 
-                  I am only awed to explore the realm of data science and machine learning, everyday. I feel exhilarated while learning any new skill and applying to solve a problem, which drives me to always keep learning. To build solutions for problems that can touch people's lives means the world to me.
-                  <br/><br/> 
-                  My specialities include development of Computer Vision applications, Deep Learning applications and Machine Learning applications. I am also well versed with MERN technology stack for web development and I am a seasoned JavaScript developer.
+                  I'm a Software Engineer who believes that Software Engineering is not about programming. 
+                  For me, software engineering has been about learning to better understand the problems to be solved and being responsible 
+                  about how my software influences the end-user. <br />
+                  <br />
+                  I am a Software Development Engineer working at <a href='https://harness.io/' target="_blank" rel="noopener noreferrer">Harness</a> and 
+                  a core contributor to <a href="https://litmuschaos.io/" target="_blank" rel="noopener noreferrer">LitmusChaos</a>, a CNCF Incubating project 
+                  for performing Chaos Engineering in cloud-native environments. Prior to joining Harness, I have been an SDE intern at 
+                  <a href='https://chaosnative.com/' target="_blank" rel="noopener noreferrer">ChaosNative</a>, the company behind the LitmusChaos 
+                  framework, where I found the opportunity to step into the cloud-native realm, explore the magic of Kubernetes, and ofcourse develop 
+                  LitmusChaos. While I am not solving problems and writing code, I love to share my learnings with fellow software engineers with my 
+                  technical <a href="/blogs">blogs</a>. I tend to write on a variety of topics including Chaos Engineering, Kubernetes, Docker, LitmusChaos 
+                  to name a few.<br />
+                  <br />
+                  Additionally, I am always on the lookout to be a part of open source meetups and tech conferences, either as an attendee or even better, 
+                  as a speaker. I have been a speaker in multiple international and domestic meetups and conferences including <a href='https://community.cncf.io/events/details/cncf-kcd-bengaluru-presents-kubernetes-community-days-bengaluru-2022-virtual-event/' target="_blank" rel="noopener noreferrer">
+                  KCD Bengaluru 2022</a>, <a href='https://chaoscarnival.io/' target="_blank" rel="noopener noreferrer">ChaosCarnival 2022
+                  </a>, <a href='https://community.cncf.io/cloud-native-scale/' target="_blank" rel="noopener noreferrer">CNCF Cloud native @Scale Meetup
+                  </a>, <a href='https://community.cncf.io/kubernetes-chaos-engineering-meetup-group/' target="_blank" rel="noopener noreferrer">CNCF Chaos 
+                  Engineering Meetup</a> and <a href='https://www.meetup.com/Kubernetes-Sri-Lanka/' target="_blank" rel="noopener noreferrer">Kubernetes Sri Lanka Meetup</a>.<br />
+                  <br />
+                  Beyond the buzz of the tech life, I cherish a steaming pot of coffee and a hardcover book on rainy days and a long walk through the woods on summer evenings.
                 </h5>
                 <div className="pt-4">
                   <a href="https://www.github.com/neelanjan00" target="_blank" rel="noopener noreferrer">
@@ -131,27 +165,21 @@ const Home = () => {
         </svg>
       </section>
 
-      <section className="pt-4">
-        <div className="container">
-          <h1 style={{ fontWeight: 800 }}>MY SKILLS</h1>
-          <div className="row py-5">
-            <div className="col-lg-3 col-12 p-5 p-lg-4">
-              <CircularProgressbar value={70} text={`${70}%`} />
-              <h3 className="pt-3" style={{ textAlign: 'center' }}>Machine Learning</h3>
-            </div>
-            <div className="col-lg-3 col-12 p-5 p-lg-4">
-              <CircularProgressbar value={65} text={`${65}%`} />
-              <h3 className="pt-3" style={{ textAlign: 'center' }}>Data Science</h3>
-            </div>
-            <div className="col-lg-3 col-12 p-5 p-lg-4">
-              <CircularProgressbar value={85} text={`${85}%`} />
-              <h3 className="pt-3" style={{ textAlign: 'center' }}>Web Development</h3>
-            </div>
-            <div className="col-lg-3 col-12 p-5 p-lg-4">
-              <CircularProgressbar value={80} text={`${80}%`} />
-              <h3 className="pt-3" style={{ textAlign: 'center' }}>Javascript</h3>
-            </div>
-          </div>
+      <section style={{ minHeight: '60vh' }}>
+        <div className='container'>
+          <h1 style={{'fontWeight': 800}}>MY TALKS</h1>
+          <Swiper
+            parallax={true}
+            spaceBetween={90}
+            slidesPerView={window.screen.width >= 1280 ? 2 : 1}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            autoplay={{ delay: 2500, pauseOnMouseEnter: true }}>
+            {videos.map((video, i) => {
+              return <SwiperSlide key={i}>
+                <iframe width="512" height="288" loading='lazy' src={video.embedURL} title="YouTube" frameBorder={0} frameB  order="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+              </SwiperSlide>
+            })}
+          </Swiper>
         </div>
       </section>
 
@@ -200,17 +228,17 @@ const Home = () => {
           <Swiper
             spaceBetween={30}
             slidesPerView={window.screen.width >= 1280 ? 3 : 1}
-            pagination={{ clickable: true }}
+            pagination={{ clickable: true, dynamicBullets: true  }}
             autoplay={{ delay: 2500 }}>
             <SwiperSlide>
               <div className="p-3" style={{
                 minHeight: '200px',
                 backgroundColor: 'rgb(230, 230, 230)'
               }} >
-                <h5>LCS2, IIIT-DELHI</h5>
-                <h6>Dec, 2020 - Present</h6>
+                <h5>SDE, Harness</h5>
+                <h6>March, 2022 - Present</h6>
                 <p className="pt-2">
-                  Laboratory for Computational Social Systems is a research lab under IIIT-Delhi, responsible for advancements in ML and Social Computing.
+                Harness is the industry's first Software Delivery Platform to use AI to simplify the DevOps processes - CI, CD, Feature Flags, Cloud Costs, Chaos Engineering and much more.
                 </p>
               </div>
             </SwiperSlide>
@@ -219,10 +247,10 @@ const Home = () => {
                 minHeight: '200px',
                 backgroundColor: 'rgb(230, 230, 230)'
               }} >
-                <h5>IOT LAB, KIIT UNIVERSITY</h5>
-                <h6>Aug, 2019 - Present</h6>
+                <h5>SDE Intern, ChaosNative</h5>
+                <h6>May, 2021 - Mar, 2022</h6>
                 <p className="pt-2">
-                  IoT Lab is a research lab under the School of Computer Engineering, KIIT University. 
+                  ChaosNative is the founder of the LitmusChaos project, a CNCF incubating project for performing Chaos Engineering at scale in Cloud-Native environments.
                 </p>
               </div>
             </SwiperSlide>
@@ -231,22 +259,10 @@ const Home = () => {
                 minHeight: '200px',
                 backgroundColor: 'rgb(230, 230, 230)'
               }} >
-                <h5>WEC MINDS PVT. LTD.</h5>
-                <h6>Nov, 2019 - Present</h6>
+                <h5>Project Intern, HighRadius</h5>
+                <h6>Jan, 2021 - Mar, 2021</h6>
                 <p className="pt-2">
-                  Developed an online startup evaluation portal for Startup Odisha, an initiative by the Government of Odisha.
-                </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="p-3" style={{
-                minHeight: '200px',
-                backgroundColor: 'rgb(230, 230, 230)'
-              }} >
-                <h5>FIND ME MENTOR</h5>
-                <h6>Jul, 2020 - Present</h6>
-                <p className="pt-2">
-                  Find Me Mentor is an educational startup which offers online education and courses of an individual's choice.
+                  HighRadius is a Fintech SaaS company that provides AI-based Autonomous Systems to 600+ companies for automating their Accounts Receivable and Treasury processes.
                 </p>
               </div>
             </SwiperSlide>
