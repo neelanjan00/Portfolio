@@ -1,0 +1,8 @@
+.blogPage {
+    line-height: 1.7;
+    font-size: x-large;
+}
+
+.blogPage h1, .blogPage h2, .blogPage h3, .blogPage h4, .blogPage h5, .blogPage h6 {
+    padding: 40px 0 5px 0;
+}

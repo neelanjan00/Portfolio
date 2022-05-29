@@ -11,7 +11,7 @@ import { auth } from './services/firebase'
 import PrivateRoute from './HOCs/PrivateRoute'
 import PublicRoute from './HOCs/PublicRoute'
 import Blogs from './containers/blogs'
-import Blog from './containers/blog'
+import Blog from './containers/blog/blog'
 
 const App = () => {
 
