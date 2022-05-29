@@ -11,6 +11,7 @@ import { auth } from './services/firebase'
 import PrivateRoute from './HOCs/PrivateRoute'
 import PublicRoute from './HOCs/PublicRoute'
 import Blogs from './containers/blogs'
+import Blog from './containers/blog'
 
 const App = () => {
 
@@ -57,6 +58,10 @@ const App = () => {
 
           <Route exact path="/blogs">
             <Blogs />
+          </Route>
+
+          <Route exact path="/blog">
+            <Blog />
           </Route>
 
           <PublicRoute 
