@@ -1,57 +1,34 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-const BlogTile = (props) => {    
-    const { title, link, thumbnail, categories, content, pubDate } = props.blogData;
+const truncateText = (text, start, len) => {
+    return text.length > len ? text.slice(start, len) + "..." : text;
+}
 
-    const cleanTitle = checkTitle => {
-        checkTitle = checkTitle.replace("amp;", "");
-        return checkTitle
-    }
+const getDateFromDateTime = dateTime => {
+    const dateTimeString = new Date(dateTime).toString()
+    const dateTimeStringArray = dateTimeString.split(" ")
 
-    const truncateText = (text, start, len) => {
-        return text.length > len ? text.slice(start, len) : text;
-    }
+    return `${dateTimeStringArray[1]} ${dateTimeStringArray[2]}, ${dateTimeStringArray[3]}`
+}
 
-    const convertDate = date => {
-        let dateArray = date.slice(0, 10).split("-")
-        let year = dateArray.shift();
-        dateArray.push(year)
-        return `Published: ${dateArray[1] + "/" + dateArray[0] + "/" + dateArray[2]}`;
-    }
-
-    const identifyParagraphs = content => {
-        let rex = /<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/
-        return rex.exec(content)[0].replace(/<\/?[^>]+(>|$)/g, "")
-    }
-
-    const getCategories = categories => {
-        let categoryString = "";
-
-        categories.forEach(tags => categoryString += "#" + tags + "\xa0\xa0");
-
-        return categoryString
-    }
+const BlogTile = (props) => {
+    const { title, dateTime, coverImageURL, contentPreview } = props.blogData;
 
     return (
         <div className="container mt-5">
-            <a target="_blank" rel="noopener noreferrer" href={`${link}`} style={{textDecoration: 'none', color: 'black'}}>
+            <Link to={`/blog/${dateTime}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <div className="row">
                     <div className="col-lg-5 col-12">
-                        <img src={`${thumbnail}`} 
-                             className="img-fluid"
-                             style={{objectFit: 'cover'}} 
-                             alt={truncateText(cleanTitle(title), 0, 60)} />
+                        <img src={coverImageURL} className="img-fluid" style={{objectFit: 'cover'}} alt={title} />
                     </div>
                     <div className="col-lg-7 col-12">
-                        <h3 style={{fontWeight: '600'}}>{title}</h3>
-                        <div>
-                            <h5 style={{textTransform: 'capitalize', fontWeight: '700'}}>{getCategories(categories)}</h5>
-                        </div><br />
-                        <p>{truncateText(identifyParagraphs(content), 0, 200) + "..."}</p><br />
-                        <h5>{convertDate(pubDate)}</h5>
+                        <h3 style={{fontWeight: '600', marginTop: window.screen.width > 1280 ? '0' : '10px'}}>{title}</h3>
+                        <p>{truncateText(contentPreview, 0, 350)}</p>
+                        <h5>{getDateFromDateTime(dateTime)}</h5>
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
     )
 }

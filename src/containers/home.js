@@ -6,10 +6,10 @@ import Footer from '../components/footer/footer'
 import Navbar from '../components/navbar/navbar'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useHistory } from 'react-router-dom'
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import ProjectsPreview from '../components/projects-preview/projects-preview'
-import { getGithubIcon, getLinkedInIcon, getEmailIcon } from '../assets/inline-svgs'
+import { getGithubIcon, getLinkedInIcon, getEmailIcon, getTwitterIcon } from '../assets/inline-svgs'
 
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
@@ -119,7 +119,7 @@ const Home = () => {
             <h1 style={{ fontWeight: 800 }}>ABOUT ME</h1>
             <div className="row">
               <div className="col-lg-4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src={require("../assets/images/portrait.png")} alt="portrait" width="400" className="img-fluid" />
+                <img src={require("../assets/images/portrait.png")} style={{padding: window.screen.width > 1280 ? '0 0 0 0' : '0 50px 50px 50px'}} alt="portrait" width="400" className="img-fluid" />
               </div>
               <div className="col-lg-7 ml-1">
                 <h5 className="mb-0" style={{ textAlign: 'justify' }}>
@@ -129,12 +129,11 @@ const Home = () => {
                   <br />
                   I am a Software Development Engineer working at <a href='https://harness.io/' target="_blank" rel="noopener noreferrer">Harness</a> and 
                   a core contributor to <a href="https://litmuschaos.io/" target="_blank" rel="noopener noreferrer">LitmusChaos</a>, a CNCF Incubating project 
-                  for performing Chaos Engineering in cloud-native environments. Prior to joining Harness, I have been an SDE intern at 
-                  <a href='https://chaosnative.com/' target="_blank" rel="noopener noreferrer">ChaosNative</a>, the company behind the LitmusChaos 
-                  framework, where I found the opportunity to step into the cloud-native realm, explore the magic of Kubernetes, and ofcourse develop 
-                  LitmusChaos. While I am not solving problems and writing code, I love to share my learnings with fellow software engineers with my 
-                  technical <a href="/blogs">blogs</a>. I tend to write on a variety of topics including Chaos Engineering, Kubernetes, Docker, LitmusChaos 
-                  to name a few.<br />
+                  for performing Chaos Engineering in cloud-native environments. Prior to joining Harness, I have been an SDE intern at <a href='https://chaosnative.com/' 
+                  target="_blank" rel="noopener noreferrer">ChaosNative</a>, the company behind the LitmusChaos framework, where I found the opportunity 
+                  to step into the cloud-native realm, explore the magic of Kubernetes, and ofcourse develop LitmusChaos. While I am not solving problems 
+                  and writing code, I love to share my learnings with fellow software engineers with my technical <a href="/blogs">blogs</a>. I tend 
+                  to write on a variety of topics including Chaos Engineering, Kubernetes, Docker, LitmusChaos to name a few.<br />
                   <br />
                   Additionally, I am always on the lookout to be a part of open source meetups and tech conferences, either as an attendee or even better, 
                   as a speaker. I have been a speaker in multiple international and domestic meetups and conferences including <a href='https://community.cncf.io/events/details/cncf-kcd-bengaluru-presents-kubernetes-community-days-bengaluru-2022-virtual-event/' target="_blank" rel="noopener noreferrer">
@@ -151,6 +150,9 @@ const Home = () => {
                   </a>
                   <a href="https://www.linkedin.com/in/neelanjan00" target="_blank" rel="noopener noreferrer">
                     {getLinkedInIcon('white')}
+                  </a>
+                  <a href="https://www.twitter.com/NeelanjanManna" target="_blank" rel="noopener noreferrer">
+                    {getTwitterIcon('white')}
                   </a>
                   <a href="mailto:neelanjanmanna@gmail.com">
                     {getEmailIcon('white')}

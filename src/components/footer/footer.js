@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import emailjs from 'emailjs-com'
-import { getLinkedInIcon, getGithubIcon, getEmailIcon } from '../../assets/inline-svgs'
+import { getLinkedInIcon, getGithubIcon, getEmailIcon, getTwitterIcon } from '../../assets/inline-svgs'
 
 const Footer = () => {
 
@@ -67,8 +67,13 @@ const Footer = () => {
                                         </div>
                                     </a>
                                     <a href="https://www.linkedin.com/in/neelanjan00" target="_blank" rel="noopener noreferrer">
-                                        <div style={{'float': 'right'}} className="mt-1">
+                                        <div style={{'float': 'right'}}>
                                             {getLinkedInIcon('white')}
+                                        </div>
+                                    </a>
+                                    <a href="https://www.twitter.com/NeelanjanManna" target="_blank" rel="noopener noreferrer">
+                                        <div style={{'float': 'right'}}>
+                                            {getTwitterIcon('white')}
                                         </div>
                                     </a>
                                     <a href="mailto:neelanjanmanna@gmail.com">

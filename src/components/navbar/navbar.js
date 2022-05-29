@@ -53,7 +53,7 @@ const Navbar = (props) => {
                             <h5 style={{ display: 'inline' }}>Home</h5>
                         </span>
                     </Link>
-                    <Link to="/blogs" style={{ textDecoration: 'none' }}>
+                    <Link to="/blog" style={{ textDecoration: 'none' }}>
                         <span className="ml-5" style={{ color: 'white' }}>
                             <h5 style={{ display: 'inline' }}>Blogs</h5>
                         </span>
@@ -106,7 +106,7 @@ const Navbar = (props) => {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/blogs">
+                        <Link to="/blog">
                             <div style={{ padding: '10px' }}>
                                 <div style={{
                                     backgroundColor: props.source === 'blogs' ? '#102330' : 'black',
