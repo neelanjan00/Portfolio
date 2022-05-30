@@ -1,7 +1,8 @@
-import p5Min from 'p5'
+import p5 from 'p5'
+import * as THREE from 'three';
 import { db } from '../services/firebase'
 import Typewriter from 'typewriter-effect'
-import TOPOLOGY from 'vanta/dist/vanta.topology.min'
+import TOPOLOGY from 'vanta/dist/vanta.waves.min'
 import Footer from '../components/footer/footer'
 import Navbar from '../components/navbar/navbar'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -37,7 +38,13 @@ const Home = () => {
         scaleMobile: 1.00,
         minHeight: 200.00,
         minWidth: 200.00,
-        p5: p5Min
+        p5: p5,
+        THREE: THREE,
+        color: 0x70707,
+        shininess: 60.00,
+        waveHeight: 24.00,
+        waveSpeed: 0.25,
+        zoom: 0.99
       }))
     }
 
