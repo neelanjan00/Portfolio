@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import Navbar from '../components/navbar/navbar'
 import Footer from '../components/footer/footer'
-import { auth, db, storage } from '../services/firebase'
-import { useHistory } from 'react-router-dom'
+import { db, storage } from '../services/firebase'
 
 const AddProjects = () => {
-
-    const history = useHistory()
 
     var [projectState, setProjectState] = useState({
         title: '', 
