@@ -4,6 +4,9 @@ import Navbar from '../../components/navbar/navbar';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import { db } from '../../services/firebase';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {materialDark} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import styles from './blog.module.css';
 
@@ -20,6 +23,24 @@ const getLoadingSpinner = () => {
             <span class="sr-only" />
         </div>
     </div>
+}
+
+const CodeBlock = {
+    code({ node, inline, className, children, ...props }) {
+        const match = /language-(\w+)/.exec(className || '')
+        return !inline && match ? (
+            <SyntaxHighlighter
+                style={materialDark}
+                language={match[1]}
+                PreTag="div" {...props}>
+                {String(children).replace(/\n$/, '')}
+            </SyntaxHighlighter>
+        ) : (
+            <code className={className} {...props}>
+                {children}
+            </code>
+        )
+    }
 }
 
 function Blog() {
@@ -57,7 +78,7 @@ function Blog() {
                     paddingLeft: window.screen.width >= 1280 ? '170px' : '0px', 
                     paddingRight: window.screen.width >= 1280 ? '170px' : '0px',  
                     }} className={styles.blogPage}>
-                    <ReactMarkdown children={blogContent} />
+                    <ReactMarkdown children={blogContent} remarkPlugins={[remarkGfm]} components={CodeBlock} />
                 </div>
             </div>
             <Footer />
