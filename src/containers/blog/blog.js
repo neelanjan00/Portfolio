@@ -59,7 +59,13 @@ function Blog() {
 
     useEffect(() => {
         if(blogMetadata.markdownURL) {
-            fetch(blogMetadata.markdownURL)
+            fetch(blogMetadata.markdownURL, {
+                method: "GET",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Access-Control-Allow-Headers" : "Origin, X-Requested-With, Content-Type, Accept"
+                }
+            })
             .then(response => response.text())
             .then(newBlogContent => {
                 setBlogContent(newBlogContent)
