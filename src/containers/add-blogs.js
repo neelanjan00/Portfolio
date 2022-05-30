@@ -11,7 +11,6 @@ const AddBlogs = () => {
         markdownURL: '', 
         title: '', 
         dateTime: '',
-        date: ''
     })
 
     const [coverImage, setCoverImage] = useState(null)
@@ -21,26 +20,28 @@ const AddBlogs = () => {
         event.preventDefault()
         event.target.reset()
 
-        const uploadCoverImageSnapshot = await storage.ref(`blog-cover-images/${coverImage.name}`).put(coverImage)
+        try {
+            const uploadCoverImageSnapshot = await storage.ref(`blog-cover-images/${coverImage.name}`).put(coverImage)
 
-        const coverImageURL = await uploadCoverImageSnapshot.ref.getDownloadURL()
+            const coverImageURL = await uploadCoverImageSnapshot.ref.getDownloadURL()
 
-        const uploadMarkdownFileSnapshot = await storage.ref(`blogs/${markdownFile.name}`).put(markdownFile)
+            const uploadMarkdownFileSnapshot = await storage.ref(`blogs/${markdownFile.name}`).put(markdownFile)
 
-        const markdownURL = await uploadMarkdownFileSnapshot.ref.getDownloadURL()
+            const markdownURL = await uploadMarkdownFileSnapshot.ref.getDownloadURL()
 
-        const uploadDataSnapshot = await db.collection('blogs').add({ ...blogState, coverImageURL: coverImageURL, markdownURL: markdownURL, dateTime: new Date(blogState.dateTime).getTime() })
+            const uploadDataSnapshot = await db.collection('blogs').add({ ...blogState, coverImageURL: coverImageURL, markdownURL: markdownURL, dateTime: new Date(blogState.dateTime).getTime() })
 
-        if(uploadDataSnapshot)
-            alert("Data Uploaded Successfully")
-        else
-            console.log("ERROR")
+            if(uploadDataSnapshot)
+                alert("Data Uploaded Successfully")
+        } 
+        
+        catch (err) {
+            alert(err)
+        }
     }
 
     const handleInputChange = event => {
         event.preventDefault()
-
-        console.log(event.target.value)
 
         setBlogState({
             ...blogState,
