@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
 const truncateText = (text, start, len) => {
     return text.length > len ? text.slice(start, len) + "..." : text;
@@ -12,11 +12,12 @@ const getDateFromDateTime = dateTime => {
 }
 
 const BlogTile = (props) => {
+    const { url } = useRouteMatch();
     const { title, dateTime, coverImageURL, contentPreview } = props.blogData;
 
     return (
         <div className="container mt-5">
-            <Link to={`/blog/${dateTime}`} style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to={`${url}/${dateTime}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <div className="row">
                     <div className="col-lg-5 col-12">
                         <img src={coverImageURL} className="img-fluid" style={{objectFit: 'cover'}} alt={title} />
