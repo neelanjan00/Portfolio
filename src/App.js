@@ -9,8 +9,10 @@ import { auth } from './services/firebase'
 import PrivateRoute from './HOCs/PrivateRoute'
 import PublicRoute from './HOCs/PublicRoute'
 import Blogs from './containers/blogs'
-import Blog from './components/blog/blog'
+import Blog from './containers/blog/blog'
 import Admin from './containers/admin'
+import AddTalkVideos from './containers/add-talk-videos'
+import AddBlogs from './containers/add-blogs'
 
 const App = () => {
 
@@ -68,6 +70,15 @@ const App = () => {
             authenticated={authentication.authenticated} 
             component={AddProjects} />
 
+          <PrivateRoute 
+            exact path="/admin/add-talks" 
+            authenticated={authentication.authenticated} 
+            component={AddTalkVideos} />
+
+          <PrivateRoute 
+            exact path="/admin/add-blogs" 
+            authenticated={authentication.authenticated} 
+            component={AddBlogs} />
         </Switch>
       </Router>
     </div>

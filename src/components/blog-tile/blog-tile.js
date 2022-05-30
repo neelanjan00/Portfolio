@@ -13,11 +13,11 @@ const getDateFromDateTime = dateTime => {
 
 const BlogTile = (props) => {
     const { url } = useRouteMatch();
-    const { title, dateTime, coverImageURL, contentPreview } = props.blogData;
+    const { title, dateTime, coverImageURL, contentPreview, id } = props.blogData;
 
     return (
         <div className="container mt-5">
-            <Link to={`${url}/${dateTime}`} style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to={`${url}/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <div className="row">
                     <div className="col-lg-5 col-12">
                         <img src={coverImageURL} className="img-fluid" style={{objectFit: 'cover'}} alt={title} />

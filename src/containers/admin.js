@@ -15,8 +15,12 @@ const Admin = () => {
                 <Link to={`${url}/add-projects`}>
                     <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Projects</button>
                 </Link>
-                <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Blogs</button>
-                <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Talk Videos</button>
+                <Link to={`${url}/add-talks`}>
+                    <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Talk Videos</button>
+                </Link>
+                <Link to={`${url}/add-blogs`}>
+                    <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Blogs</button>
+                </Link>
             </div>
 
             <Footer />
