@@ -1,7 +1,7 @@
-import * as THREE from 'three'
+import p5Min from 'p5'
 import { db } from '../services/firebase'
 import Typewriter from 'typewriter-effect'
-import DOTS from 'vanta/dist/vanta.net.min'
+import TOPOLOGY from 'vanta/dist/vanta.topology.min'
 import Footer from '../components/footer/footer'
 import Navbar from '../components/navbar/navbar'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -14,7 +14,6 @@ import { getGithubIcon, getLinkedInIcon, getEmailIcon, getTwitterIcon } from '..
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
-import 'react-circular-progressbar/dist/styles.css'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
@@ -29,16 +28,16 @@ const Home = () => {
   useEffect(() => {
 
     if (!vantaEffect) {
-      setVantaEffect(DOTS({
+      setVantaEffect(TOPOLOGY({
         el: myRef.current,
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
         scale: 1.00,
         scaleMobile: 1.00,
-        color: 0x3fb2ff,
-        backgroundColor: 0xc0b0e,
-        THREE: THREE
+        minHeight: 200.00,
+        minWidth: 200.00,
+        p5: p5Min
       }))
     }
 
