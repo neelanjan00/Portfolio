@@ -21,16 +21,20 @@ const AddProjects = () => {
         event.preventDefault()
         event.target.reset()
 
-        const uploadTaskSnapshot = await storage.ref(`project-images/${uploadedImage.name}`).put(uploadedImage)
+        try {
+            const uploadTaskSnapshot = await storage.ref(`project-images/${uploadedImage.name}`).put(uploadedImage)
 
-        const imageURL = await uploadTaskSnapshot.ref.getDownloadURL()
+            const imageURL = await uploadTaskSnapshot.ref.getDownloadURL()
 
-        const uploadDataSnapshot = await db.collection('projects').add({ ...projectState, image:imageURL, dateTime: Date.now() })
+            const uploadDataSnapshot = await db.collection('projects').add({ ...projectState, image:imageURL, dateTime: Date.now() })
 
-        if(uploadDataSnapshot)
-            alert("Data Uploaded Successfully")
-        else
-            console.log("ERROR")
+            if(uploadDataSnapshot)
+                alert("Data Uploaded Successfully")
+        }
+
+        catch(err) {
+            alert(err)
+        }
     }
 
     const handleInputChange = event => {

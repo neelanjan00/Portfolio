@@ -21,16 +21,19 @@ const AddTalkVideos = () => {
     }
 
     const formSubmitHandler = async event => {
-        
         event.preventDefault()
         event.target.reset()
 
-        const uploadDataSnapshot = await db.collection('videos').add({ ...formState, dateTime: Date.now() })
+        try {
+            const uploadDataSnapshot = await db.collection('videos').add({ ...formState, dateTime: Date.now() })
 
-        if(uploadDataSnapshot)
-            alert("Data Uploaded Successfully")
-        else
-            console.log("ERROR")
+            if(uploadDataSnapshot)
+                alert("Data Uploaded Successfully")
+        }
+        
+        catch(err) {
+            alert(err)
+        }
     }
 
 
