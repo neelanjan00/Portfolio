@@ -14,6 +14,14 @@ const getDateFromDateTime = dateTime => {
     return `${dateTimeStringArray[1]} ${dateTimeStringArray[2]}, ${dateTimeStringArray[3]}`
 }
 
+const getLoadingSpinner = () => {
+    return <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div class="spinner-grow" style={{width: '3rem', height: '3rem'}} role="status">
+            <span class="sr-only" />
+        </div>
+    </div>
+}
+
 function Blog() {
 
     const { id } = useParams();
@@ -29,9 +37,13 @@ function Blog() {
     }, [id]);
 
     useEffect(() => {
-        fetch(blogMetadata.markdownURL)
+        if(blogMetadata.markdownURL) {
+            fetch(blogMetadata.markdownURL)
             .then(response => response.text())
-            .then(newBlogContent => setBlogContent(newBlogContent))
+            .then(newBlogContent => {
+                setBlogContent(newBlogContent)
+            })
+        }
     }, [blogMetadata])
 
     return (
@@ -41,9 +53,9 @@ function Blog() {
                 <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
             </svg>
             <div className='container'>
-                <h5>{getDateFromDateTime(blogMetadata.dateTime)}</h5>
+                <h5>{blogMetadata.dateTime ? getDateFromDateTime(blogMetadata.dateTime) : ""}</h5>
                 <h1 style={{ fontWeight: 700 }} className='pb-5'>{blogMetadata.title}</h1>
-                <img src={blogMetadata.coverImageURL} alt="blog cover" className='pb-5' />
+                {blogMetadata.coverImageURL ? <img src={blogMetadata.coverImageURL} alt="blog cover" className='pb-5' /> : getLoadingSpinner()}
                 <div style={{ 
                     paddingLeft: window.screen.width >= 1280 ? '170px' : '0px', 
                     paddingRight: window.screen.width >= 1280 ? '170px' : '0px',  

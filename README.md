@@ -1,4 +1,4 @@
-![Portfolio](https://github.com/neelanjan00/Portfolio/blob/main/UI.png)
+![Portfolio](./UI.png)
 <h1 align="center">Welcome to Portfolio App 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-2.0-blue.svg?cacheSeconds=2592000" />
