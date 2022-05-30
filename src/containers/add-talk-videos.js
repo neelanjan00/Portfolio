@@ -34,6 +34,8 @@ const AddTalkVideos = () => {
         catch(err) {
             alert(err)
         }
+
+        return true
     }
 
 

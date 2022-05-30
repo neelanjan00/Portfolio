@@ -35,6 +35,8 @@ const AddProjects = () => {
         catch(err) {
             alert(err)
         }
+
+        return true
     }
 
     const handleInputChange = event => {

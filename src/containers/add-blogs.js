@@ -38,6 +38,8 @@ const AddBlogs = () => {
         catch (err) {
             alert(err)
         }
+
+        return true
     }
 
     const handleInputChange = event => {
