@@ -17,7 +17,7 @@ const Login = () => {
         event.preventDefault()
 
         auth.signInWithEmailAndPassword(loginFormState.email, loginFormState.password)
-            .then(user => { user ? history.push('/add-projects') : alert("Login Unsuccessful")})
+            .then(user => { user ? history.push('/admin') : alert("Login Unsuccessful")})
             .catch(err => console.log(err))
     }
 
@@ -33,10 +33,7 @@ const Login = () => {
     return ( 
         <div>
             <Navbar />
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
-            </svg>
-
+            
             <div className="container">
                 <form className="p-5" onSubmit={formSubmitHandler} style={{ backgroundColor: 'lightgrey' }}>
                     <h1 className="py-1" style={{ fontWeight: '800', textAlign: 'center' }}>LOGIN</h1>
@@ -55,8 +52,7 @@ const Login = () => {
                     </div>
                     
                     <center>
-                        <button className="btn btn-outline-secondary mt-3" 
-                                style={{ borderRadius: '0' }}>SUBMIT</button>
+                        <button className="btn btn-outline-secondary mt-3" style={{ borderRadius: '0' }}>SUBMIT</button>
                     </center>
                 </form>
             </div>

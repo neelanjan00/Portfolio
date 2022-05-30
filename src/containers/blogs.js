@@ -26,11 +26,7 @@ const Blogs = () => {
 
     return (
         <div>
-            <Navbar source="blogs" />
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
-            </svg>
-
+            <Navbar />
             <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
             <div>
                 {
@@ -39,7 +35,6 @@ const Blogs = () => {
                     })
                 }
             </div>
-
             <Footer />
         </div>
     )

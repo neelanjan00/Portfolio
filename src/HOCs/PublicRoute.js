@@ -5,9 +5,9 @@ const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
     return (
         <Route
             {...rest}
-            render={props => authenticated === false
-                ? <Component {...props} />
-                : <Redirect to='/add-projects' />}
+            render={props => authenticated === true
+                ? <Redirect to='/admin' />
+                : <Component {...props} />}
         />
     )
 }

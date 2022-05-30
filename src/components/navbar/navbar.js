@@ -1,8 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { getHomeIcon, getBlogIcon, getProjectIcon, getContactMeIcon } from '../../assets/inline-svgs'
+import { getHomeIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon } from '../../assets/inline-svgs'
+import { auth } from '../../services/firebase'
 
 const Navbar = (props) => {
+
+    const logoutHandler = event => {
+        event.preventDefault()
+        auth.signOut().then(() => history.push('/'))
+    }
+
+    const history = useHistory()
 
     var [sidebarState, setSidebarState] = useState({ sidebarDisplay: 'none' })
     var [topScroll, setTopScroll] = useState(window.scrollY)
@@ -46,6 +54,7 @@ const Navbar = (props) => {
 
     if (window.screen.width >= 1280) {
         return (
+            <>
             <div style={navbarStyle} className="pr-5 p-3">
                 <div style={{ float: 'right' }}>
                     <Link to="/" style={{ textDecoration: 'none' }}>
@@ -66,8 +75,23 @@ const Navbar = (props) => {
                     <span className="ml-5" style={{ color: 'white', cursor: 'pointer' }}>
                         <h5 style={{ display: 'inline' }} onClick={scrollToBottom}>Contact Me</h5>
                     </span>
+                    {
+                        auth.currentUser === null 
+                            ? null 
+                            : <span className="ml-5" onClick={logoutHandler} style={{ color: 'white', cursor: 'pointer' }}>
+                                <h5 style={{ display: 'inline' }}>Logout</h5>
+                            </span>
+                    }
                 </div>
             </div>
+            {
+                props.source === 'home' 
+                    ? null
+                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                        <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
+                    </svg>
+            }
+            </>
         )
     } else {
         return (
@@ -91,7 +115,6 @@ const Navbar = (props) => {
                         <Link to="/">
                             <div style={{ padding: '10px' }}>
                                 <div style={{
-                                    backgroundColor: props.source === 'home' ? '#102330' : 'black',
                                     color: 'white',
                                     borderRadius: '10px',
                                     textAlign: 'center',
@@ -109,7 +132,6 @@ const Navbar = (props) => {
                         <Link to="/blog">
                             <div style={{ padding: '10px' }}>
                                 <div style={{
-                                    backgroundColor: props.source === 'blogs' ? '#102330' : 'black',
                                     color: 'white',
                                     textAlign: 'center',
                                     borderRadius: '10px',
@@ -127,7 +149,6 @@ const Navbar = (props) => {
                         <Link to="/projects">
                             <div style={{ padding: '10px' }}>
                                 <div style={{
-                                    backgroundColor: props.source === 'projects' ? '#102330' : 'black',
                                     color: 'white',
                                     textAlign: 'center',
                                     borderRadius: '10px',
@@ -158,8 +179,34 @@ const Navbar = (props) => {
                                 </div>
                             </div>
                         </div>
+                        {
+                            auth.currentUser === null 
+                                ? null 
+                                : <div style={{ padding: '10px' }}>
+                                    <div style={{
+                                        color: 'white',
+                                        textAlign: 'center',
+                                        borderRadius: '10px',
+                                        padding: '13px'
+                                    }} onClick={logoutHandler}>
+                                        <div style={{ display: 'inline-block' }}>
+                                            <span>
+                                                {getLogoutIcon('white')}
+                                            </span>
+                                            <p className="pl-2" style={{ display: "inline" }}>Logout</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
                     </div>
                 ) : null}
+                {
+                    props.source === 'home' 
+                        ? null
+                        : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                            <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
+                        </svg>
+                }
             </React.Fragment>
         )
     }

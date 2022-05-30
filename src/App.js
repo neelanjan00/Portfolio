@@ -1,9 +1,7 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
 import Home from './containers/home'
-import { BrowserRouter as Router, 
-         Route, 
-         Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Projects from './containers/projects'
 import AddProjects from './containers/add-projects'
 import Login from './containers/login'
@@ -12,6 +10,7 @@ import PrivateRoute from './HOCs/PrivateRoute'
 import PublicRoute from './HOCs/PublicRoute'
 import Blogs from './containers/blogs'
 import Blog from './components/blog/blog'
+import Admin from './containers/admin'
 
 const App = () => {
 
@@ -33,16 +32,6 @@ const App = () => {
       })
   }), [setAuthState])
 
-  if (authentication.initializing) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-        <div className="spinner-border" role="status">
-          <span className="sr-only" />
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="App">
       <Router>
@@ -60,17 +49,22 @@ const App = () => {
             <Blogs />
           </Route>
 
-          <Route path="/blog/:id">
+          <Route exact path="/blog/:id">
             <Blog />
           </Route>
 
           <PublicRoute 
-            path="/login" 
+            exact path="/login" 
             authenticated={authentication.authenticated} 
             component={Login} />
 
           <PrivateRoute 
-            path="/add-projects" 
+            exact path="/admin" 
+            authenticated={authentication.authenticated} 
+            component={Admin} />
+
+          <PrivateRoute 
+            exact path="/admin/add-projects" 
             authenticated={authentication.authenticated} 
             component={AddProjects} />
 

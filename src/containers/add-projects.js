@@ -52,17 +52,9 @@ const AddProjects = () => {
             setUploadedImage(event.target.files[0])
     }
 
-    const logoutHandler = event => {
-        event.preventDefault()
-        auth.signOut().then(() => history.push('/'))
-    }
-
     return (
         <div>
-            <Navbar source="add-projects" />
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
-            </svg>
+            <Navbar />
 
             <div className="container p-5" style={{ backgroundColor: 'lightgrey' }}>
                 <h1 style={{ textAlign: 'center', fontWeight: '800' }}
@@ -101,16 +93,11 @@ const AddProjects = () => {
                         <input type="file" className="form-control-file" id="project-image" 
                                onChange={handleImageInputChange} />
                     </div>
-                    <center>
-                        <button className="btn btn-outline-secondary" style={{ borderRadius: '0' }}>SUBMIT</button>
-                    </center>
+                    <div style={{display: 'grid', placeItems: 'center'}}>
+                        <button className="btn btn-outline-secondary rounded-0">SUBMIT</button>
+                    </div>
                 </form>
             </div>
-
-            <center>
-                <button className="btn btn-outline-dark mt-5" onClick={logoutHandler} 
-                        style={{ borderRadius: '0' }}>LOG OUT</button>
-            </center>
             
             <Footer />
         </div>
