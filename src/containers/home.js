@@ -92,7 +92,7 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar source="home" />
+      <Navbar />
 
       <section ref={myRef} style={{ color: 'white', minHeight: '100vh' }}>
         <div style={{ backgroundImage: 'linear-gradient(transparent, rgba(0,0,0,0.8))', minHeight: '100vh' }}>
