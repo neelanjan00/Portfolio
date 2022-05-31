@@ -184,7 +184,9 @@ const Home = () => {
             autoplay={{ delay: 2500, pauseOnMouseEnter: true }}>
             {videos.map((video, i) => {
               return <SwiperSlide key={i}>
-                <iframe width="512" height="288" loading='lazy' src={video.embedURL} title="YouTube" frameBorder={0} frameB  order="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" width="512" height="288" loading='lazy' src={video.embedURL} title="YouTube" frameBorder={0} frameB  order="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </div>
               </SwiperSlide>
             })}
           </Swiper>
