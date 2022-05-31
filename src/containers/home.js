@@ -127,7 +127,7 @@ const Home = () => {
             <h1 style={{ fontWeight: 800 }}>ABOUT ME</h1>
             <div className="row">
               <div className="col-lg-4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src={require("../assets/images/portrait.png")} style={{padding: window.screen.width > 1280 ? '0 0 0 0' : '0 50px 50px 50px'}} alt="portrait" width="400" className="img-fluid" />
+                <img src={require("../assets/images/portrait.png")} style={{padding: width > 1280 ? '0 0 0 0' : '0 50px 50px 50px'}} alt="portrait" width="400" className="img-fluid" />
               </div>
               <div className="col-lg-7 ml-1">
                 <h5 className="mb-0" style={{ textAlign: 'justify' }}>

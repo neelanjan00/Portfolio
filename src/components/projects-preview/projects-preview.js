@@ -22,7 +22,7 @@ const ProjectsPreview = (props) => {
                         alignItems: 'center'
                     }}>
                         <div>
-                            <h3 style={{ fontWeight: '600', marginTop: window.screen.width > 1280 ? '0' : '10px' }}>{props.title}</h3>
+                            <h3 style={{ fontWeight: '600', marginTop: width > 1280 ? '0' : '10px' }}>{props.title}</h3>
                             <h6>{props.domain}</h6>
                             <h5 className="py-1">{props.description}</h5>
                             <div>
