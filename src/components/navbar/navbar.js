@@ -2,18 +2,22 @@ import { Link, useHistory } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { getHomeIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon } from '../../assets/inline-svgs'
 import { auth } from '../../services/firebase'
+import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile'
+
+import useWindowSize from '../../hooks/useWindow'
 
 const Navbar = (props) => {
+
+    var [sidebarState, setSidebarState] = useState({ sidebarDisplay: 'none' })
+    var [topScroll, setTopScroll] = useState(window.scrollY)
+
+    const history = useHistory()
+    const [width] = useWindowSize()
 
     const logoutHandler = event => {
         event.preventDefault()
         auth.signOut().then(() => history.push('/'))
     }
-
-    const history = useHistory()
-
-    var [sidebarState, setSidebarState] = useState({ sidebarDisplay: 'none' })
-    var [topScroll, setTopScroll] = useState(window.scrollY)
 
     const hamburgerToggler = () => {
         sidebarState.sidebarDisplay === 'none' ?
@@ -52,7 +56,7 @@ const Navbar = (props) => {
         backgroundColor: props.source === 'home' ? (topScroll > 500 ? 'black' : 'transparent') : 'black'
     }
 
-    if (window.screen.width >= 1280) {
+    if (width >= 1280) {
         return (
             <>
             <div style={navbarStyle} className="pr-5 p-3">
@@ -112,91 +116,14 @@ const Navbar = (props) => {
                         zIndex: '2', minHeight: '100vh', width: '65vw',
                         backgroundColor: 'black', position: 'fixed'
                     }}>
-                        <Link to="/">
-                            <div style={{ padding: '10px' }}>
-                                <div style={{
-                                    color: 'white',
-                                    borderRadius: '10px',
-                                    textAlign: 'center',
-                                    padding: '13px'
-                                }}>
-                                    <div style={{ display: 'inline-block' }}>
-                                        <span>
-                                            {getHomeIcon('white')}
-                                        </span>
-                                        <p className="pl-2" style={{ display: "inline" }}>Home</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/blog">
-                            <div style={{ padding: '10px' }}>
-                                <div style={{
-                                    color: 'white',
-                                    textAlign: 'center',
-                                    borderRadius: '10px',
-                                    padding: '13px'
-                                }}>
-                                    <div style={{ display: 'inline-block' }}>
-                                        <span>
-                                            {getBlogIcon('white')}
-                                        </span>
-                                        <p className="pl-2" style={{ display: "inline" }}>Blogs</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/projects">
-                            <div style={{ padding: '10px' }}>
-                                <div style={{
-                                    color: 'white',
-                                    textAlign: 'center',
-                                    borderRadius: '10px',
-                                    padding: '13px'
-                                }}>
-                                    <div style={{ display: 'inline-block' }}>
-                                        <span>
-                                            {getProjectIcon('white')}
-                                        </span>
-                                        <p className="pl-2" style={{ display: "inline" }}>Projects</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                        <div style={{ padding: '10px' }}>
-                            <div style={{
-                                backgroundColor: 'black',
-                                color: 'white',
-                                textAlign: 'center',
-                                borderRadius: '10px',
-                                padding: '13px'
-                            }}>
-                                <div style={{ display: 'inline-block' }}>
-                                    <span>
-                                        {getContactMeIcon('white')}
-                                    </span>
-                                    <p className="pl-2" style={{ display: "inline" }} onClick={contactMeMobileView}>Contact Me</p>
-                                </div>
-                            </div>
-                        </div>
+                        <Link to="/"><MobileNavbarTile icon={getHomeIcon('white')} label="Home" /></Link>
+                        <Link to="/blog"><MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" /></Link>
+                        <Link to="/projects"><MobileNavbarTile icon={getProjectIcon('white')} label="Project" /></Link>
+                        <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} />
                         {
                             auth.currentUser === null 
                                 ? null 
-                                : <div style={{ padding: '10px' }}>
-                                    <div style={{
-                                        color: 'white',
-                                        textAlign: 'center',
-                                        borderRadius: '10px',
-                                        padding: '13px'
-                                    }} onClick={logoutHandler}>
-                                        <div style={{ display: 'inline-block' }}>
-                                            <span>
-                                                {getLogoutIcon('white')}
-                                            </span>
-                                            <p className="pl-2" style={{ display: "inline" }}>Logout</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} />
                         }
                     </div>
                 ) : null}

@@ -11,6 +11,7 @@ import { useState, useEffect, useRef } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import ProjectsPreview from '../components/projects-preview/projects-preview'
 import { getGithubIcon, getLinkedInIcon, getEmailIcon, getTwitterIcon } from '../assets/inline-svgs'
+import useWindowSize from '../hooks/useWindow'
 
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
@@ -20,6 +21,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
 const Home = () => {
   const history = useHistory()
+  const [width] = useWindowSize()
 
   const [vantaEffect, setVantaEffect] = useState(0)
   const [projects, setProjects] = useState([])
@@ -179,7 +181,7 @@ const Home = () => {
           <Swiper
             parallax={true}
             spaceBetween={90}
-            slidesPerView={window.screen.width >= 1280 ? 2 : 1}
+            slidesPerView={width >= 1280 ? 2 : 1}
             pagination={{ clickable: true, dynamicBullets: true }}
             autoplay={{ delay: 2500, pauseOnMouseEnter: true }}>
             {videos.map((video, i) => {
@@ -237,7 +239,7 @@ const Home = () => {
           <h1 className="pb-5" style={{ textAlign: 'center', fontWeight: 800 }}>EXPERIENCE</h1>
           <Swiper
             spaceBetween={30}
-            slidesPerView={window.screen.width >= 1280 ? 3 : 1}
+            slidesPerView={width >= 1000 ? 3 : 1}
             pagination={{ clickable: true, dynamicBullets: true  }}
             autoplay={{ delay: 2500 }}>
             <SwiperSlide>

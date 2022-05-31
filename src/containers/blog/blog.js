@@ -7,6 +7,7 @@ import { db } from '../../services/firebase';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {materialDark} from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import useWindowSize from '../../hooks/useWindow';
 
 import styles from './blog.module.css';
 
@@ -48,6 +49,7 @@ function Blog() {
     const { id } = useParams();
     const [blogMetadata, setBlogMetadata] = useState({});
     const [blogContent, setBlogContent] = useState("");
+    const [width] = useWindowSize()
 
     useEffect(() => {
         db.collection("blogs")
@@ -75,8 +77,8 @@ function Blog() {
                 <h1 style={{ fontWeight: 700 }} className='pb-5'>{blogMetadata.title}</h1>
                 {blogMetadata.coverImageURL ? <img src={blogMetadata.coverImageURL} alt="blog cover" className='pb-5' /> : getLoadingSpinner()}
                 <div style={{ 
-                    paddingLeft: window.screen.width >= 1280 ? '170px' : '0px', 
-                    paddingRight: window.screen.width >= 1280 ? '170px' : '0px',  
+                    paddingLeft: width >= 1280 ? '170px' : '0px', 
+                    paddingRight: width >= 1280 ? '170px' : '0px',  
                     }} className={styles.blogPage}>
                     <ReactMarkdown children={blogContent} remarkPlugins={[remarkGfm]} components={CodeBlock} />
                 </div>

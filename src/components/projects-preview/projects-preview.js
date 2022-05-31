@@ -1,8 +1,12 @@
 import React from 'react'
 import { getGithubIcon, getDeployedLinkIcon } from '../../assets/inline-svgs'
+import useWindowSize from '../../hooks/useWindow'
 
 const ProjectsPreview = (props) => {
-    if (props.orientation === 'lr' || window.screen.width < 1280 ) {
+
+    const [width] = useWindowSize()
+
+    if (props.orientation === 'lr' || width < 1280 ) {
         return (
             <div className="py-5">
                 <div className="row">
