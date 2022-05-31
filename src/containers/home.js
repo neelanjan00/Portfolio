@@ -42,11 +42,11 @@ const Home = () => {
         minWidth: 200.00,
         p5: p5,
         THREE: THREE,
-        color: 0x70707,
-        shininess: 60.00,
-        waveHeight: 24.00,
-        waveSpeed: 0.25,
-        zoom: 0.99
+        color: 0x0,
+        shininess: 64.00,
+        waveHeight: 21.50,
+        waveSpeed: 0.50,
+        zoom: 0.84
       }))
     }
 
