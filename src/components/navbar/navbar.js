@@ -8,7 +8,7 @@ import useWindowSize from '../../hooks/useWindow'
 
 const Navbar = (props) => {
 
-    var [sidebarState, setSidebarState] = useState({ sidebarDisplay: 'none' })
+    var [displaySidebar, setDisplaySidebar] = useState(false)
     var [topScroll, setTopScroll] = useState(window.scrollY)
 
     const location = useLocation();
@@ -22,8 +22,7 @@ const Navbar = (props) => {
     }
 
     const hamburgerToggler = () => {
-        sidebarState.sidebarDisplay === 'none' ?
-            setSidebarState({ sidebarDisplay: 'block' }) : setSidebarState({ sidebarDisplay: 'none' })
+        setDisplaySidebar(!displaySidebar)
     }
 
     const handleScroll = () => {
@@ -40,7 +39,7 @@ const Navbar = (props) => {
 
     const contactMeMobileView = () => {
         scrollToBottom()
-        setSidebarState({ sidebarDisplay: 'none' })
+        setDisplaySidebar(false)
     }
 
     useEffect(() => {
@@ -111,22 +110,22 @@ const Navbar = (props) => {
                     </span>
                 </div>
 
-                { sidebarState.sidebarDisplay === 'block' ? (
+                { (
                     <div style={{
-                        zIndex: '2', minHeight: '100vh', width: '65vw',
-                        backgroundColor: 'black', position: 'fixed'
-                    }}>
-                        <Link to="/"><MobileNavbarTile icon={getHomeIcon('white')} label="Home" highlightNavigation={location.pathname === '/' ? true : false} /></Link>
-                        <Link to="/blog"><MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={location.pathname.includes('blog') ? true : false} /></Link>
-                        <Link to="/projects"><MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={location.pathname === '/projects' ? true : false} /></Link>
-                        <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} />
+                        zIndex: '2', minHeight: '100vh', width: displaySidebar ? '250px' : '0',
+                        backgroundColor: 'black', position: 'fixed', transition: '0.3s'}}>
+                        <MobileNavbarTile icon={getHomeIcon('white')} label="Home" highlightNavigation={location.pathname === '/'} route="/" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={location.pathname.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={location.pathname === '/projects'} route="/projects" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
+                        
                         {
                             auth.currentUser === null 
                                 ? null 
-                                : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} />
+                                : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} displaySidebar={displaySidebar} />
                         }
                     </div>
-                ) : null}
+                )}
                 {
                     location.pathname === '/' 
                         ? null
