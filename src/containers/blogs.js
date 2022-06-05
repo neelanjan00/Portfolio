@@ -28,13 +28,15 @@ const Blogs = () => {
     return (
         <div>
             <Navbar />
-            <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
-            <div>
+            <div className='container'>
+                <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
+                <div>
                 {
                     blogData.length !== 0 ? blogData.map(blog => {
                         return <BlogTile blogData={blog} key={blog.dateTime} />
                     }) : <div className='mt-5'>{getLoadingSpinner()}</div>
                 }
+            </div>
             </div>
             <Footer />
         </div>

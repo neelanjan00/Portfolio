@@ -1,5 +1,5 @@
 import { useHistory, useLocation } from 'react-router-dom'
-import { HashLink as Link } from 'react-router-hash-link'
+import { HashLink } from 'react-router-hash-link'
 import React, { useState, useEffect, useRef } from 'react'
 import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon } from '../../assets/inline-svgs'
 import { auth } from '../../services/firebase'
@@ -75,26 +75,26 @@ const Navbar = (props) => {
             <>
                 <div style={navbarStyle} className="pr-5 p-3">
                     <div style={{ float: 'right' }}>
-                        <Link to="/#about-me" style={{ textDecoration: 'none' }}>
+                        <HashLink smooth to="/#about-me" style={{ textDecoration: 'none' }}>
                             <span style={{ color: 'white' }}>
                                 <h5 style={{ display: 'inline' }}>About Me</h5>
                             </span>
-                        </Link>
-                        <Link to="/#my-talks" style={{ textDecoration: 'none' }}>
+                        </HashLink>
+                        <HashLink smooth to="/#my-talks" style={{ textDecoration: 'none' }}>
                             <span className='ml-5' style={{ color: 'white' }}>
                                 <h5 style={{ display: 'inline' }}>Talks</h5>
                             </span>
-                        </Link>
-                        <Link to="/blog" style={{ textDecoration: 'none' }}>
+                        </HashLink>
+                        <HashLink smooth to="/blog#" style={{ textDecoration: 'none' }}>
                             <span className="ml-5" style={{ color: 'white' }}>
                                 <h5 style={{ display: 'inline' }}>Blogs</h5>
                             </span>
-                        </Link>
-                        <Link to="/projects" style={{ textDecoration: 'none' }}>
+                        </HashLink>
+                        <HashLink smooth to="/projects#" style={{ textDecoration: 'none' }}>
                             <span className="ml-5" style={{ color: 'white' }}>
                                 <h5 style={{ display: 'inline' }}>Projects</h5>
                             </span>
-                        </Link>
+                        </HashLink>
                         <span className="ml-5" style={{ color: 'white', cursor: 'pointer' }}>
                             <h5 style={{ display: 'inline' }} onClick={scrollToBottom}>Contact Me</h5>
                         </span>
@@ -133,8 +133,8 @@ const Navbar = (props) => {
                 }}>
                     <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="/#about-me" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="/#my-talks" displaySidebar={displaySidebar} />
-                    <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={location.pathname.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
-                    <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={location.pathname === '/projects'} route="/projects" displaySidebar={displaySidebar} />
+                    <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={location.pathname.includes('blog')} route="/blog#" displaySidebar={displaySidebar} />
+                    <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={location.pathname === '/projects'} route="/projects#" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
 
                     {

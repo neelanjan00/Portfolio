@@ -7,7 +7,7 @@ const MobileNavbarTile = props => {
 
     return (
         <div style={{ margin: '10px' }}>
-            <HashLink to={route ? route : "#"}>
+            <HashLink smooth to={route ? route : "#"}>
                 <div style={{
                     color: 'white',
                     padding: '13px',
