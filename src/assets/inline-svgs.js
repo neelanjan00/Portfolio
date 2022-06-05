@@ -159,4 +159,12 @@ var getHamburgerIcon = color => {
     }
 }
 
-export {getGithubIcon, getLinkedInIcon, getEmailIcon, getDeployedLinkIcon, getHomeIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getTwitterIcon, getLogoutIcon, getHamburgerIcon}
+var getLoadingSpinner = () => {
+    return <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div className="spinner-grow" style={{width: '3rem', height: '3rem'}} role="status">
+            <span className="sr-only" />
+        </div>
+    </div>
+}
+
+export {getGithubIcon, getLinkedInIcon, getEmailIcon, getDeployedLinkIcon, getHomeIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getTwitterIcon, getLogoutIcon, getHamburgerIcon, getLoadingSpinner}

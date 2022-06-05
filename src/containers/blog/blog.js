@@ -8,6 +8,8 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {materialDark} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import useWindowSize from '../../hooks/useWindow';
+import rehypeRaw from 'rehype-raw';
+import { getLoadingSpinner } from '../../assets/inline-svgs';
 
 import styles from './blog.module.css';
 
@@ -16,14 +18,6 @@ const getDateFromDateTime = dateTime => {
     const dateTimeStringArray = dateTimeString.split(" ")
 
     return `${dateTimeStringArray[1]} ${dateTimeStringArray[2]}, ${dateTimeStringArray[3]}`
-}
-
-const getLoadingSpinner = () => {
-    return <div style={{display: 'flex', justifyContent: 'center'}}>
-        <div className="spinner-grow" style={{width: '3rem', height: '3rem'}} role="status">
-            <span className="sr-only" />
-        </div>
-    </div>
 }
 
 const CodeBlock = {
@@ -75,12 +69,12 @@ function Blog() {
             <div className='container'>
                 <h5>{blogMetadata.dateTime ? getDateFromDateTime(blogMetadata.dateTime) : ""}</h5>
                 <h1 style={{ fontWeight: 700 }} className='pb-5'>{blogMetadata.title}</h1>
-                {blogMetadata.coverImageURL ? <img src={blogMetadata.coverImageURL} alt="blog cover" className='pb-5' /> : getLoadingSpinner()}
+                {blogMetadata.coverImageURL ? <img src={blogMetadata.coverImageURL} alt="blog cover" className='pb-5' /> : null}
                 <div style={{ 
                     paddingLeft: width >= 1280 ? '170px' : '0px', 
                     paddingRight: width >= 1280 ? '170px' : '0px',  
                     }} className={styles.blogPage}>
-                    <ReactMarkdown children={blogContent} remarkPlugins={[remarkGfm]} components={CodeBlock} />
+                    {blogContent ? <ReactMarkdown children={blogContent} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock} /> : getLoadingSpinner()}
                 </div>
             </div>
             <Footer />
