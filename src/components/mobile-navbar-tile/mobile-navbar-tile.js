@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const MobileNavbarTile = props => {
 
@@ -7,7 +7,7 @@ const MobileNavbarTile = props => {
 
     return (
         <div style={{ margin: '10px' }}>
-            <Link to={route ? route : "#"}>
+            <HashLink to={route ? route : "#"}>
                 <div style={{
                     color: 'white',
                     padding: '13px',
@@ -22,7 +22,7 @@ const MobileNavbarTile = props => {
                         <p className="ml-2" style={{ display: "inline" }}>{label}</p>
                     </div>
                 </div>
-            </Link>
+            </HashLink>
         </div>
     );
 }

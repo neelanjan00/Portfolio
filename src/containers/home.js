@@ -121,10 +121,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ color: 'white', minHeight: '100vh' }}>
+      <section style={{ color: 'white', minHeight: '100vh' }} id="about-me">
         <div style={{ backgroundColor: 'black' }}>
-          <div className="container">
-            <h1 style={{ fontWeight: 800 }}>ABOUT ME</h1>
+          <div className="container pt-5">
+            <h1 style={{ fontWeight: 800 }} className='pt-5'>ABOUT ME</h1>
             <div className="row">
               <div className="col-lg-4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <img src={require("../assets/images/portrait.png")} style={{padding: width > 1280 ? '0 0 0 0' : '0 50px 50px 50px'}} alt="portrait" width="400" className="img-fluid" />
@@ -175,9 +175,9 @@ const Home = () => {
         </svg>
       </section>
 
-      <section style={{ minHeight: '60vh' }}>
-        <div className='container'>
-          <h1 style={{'fontWeight': 800}}>MY TALKS</h1>
+      <section style={{ minHeight: width >= 1280 ? '65vh' : '95vh' }} id="my-talks">
+        <div className='container pt-5'>
+          <h1 style={{'fontWeight': 800}} className='mt-5 mt-md-0 pt-5 pb-3'>MY TALKS</h1>
           <Swiper
             parallax={true}
             spaceBetween={90}
@@ -201,7 +201,7 @@ const Home = () => {
         </svg>
         <div style={{ backgroundColor: 'rgb(230, 230, 230)' }}>
           <div className="container">
-            <h1 style={{ textAlign: 'center', fontWeight: 800 }} className="m-0 pb-5">MY PROJECTS</h1>
+            <h1 style={{ textAlign: 'center', fontWeight: 800 }} className="m-0">MY PROJECTS</h1>
             {projects.map((project, i) => {
               if (i % 2 === 0)
                 return <ProjectsPreview orientation="lr"
@@ -236,7 +236,7 @@ const Home = () => {
 
       <section className="mb-5">
         <div className="container">
-          <h1 className="pb-5" style={{ textAlign: 'center', fontWeight: 800 }}>EXPERIENCE</h1>
+          <h1 className="pb-3" style={{ textAlign: 'center', fontWeight: 800 }}>EXPERIENCE</h1>
           <Swiper
             spaceBetween={30}
             slidesPerView={width >= 1000 ? 3 : 1}

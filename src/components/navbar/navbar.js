@@ -1,6 +1,7 @@
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link'
 import React, { useState, useEffect, useRef } from 'react'
-import { getHomeIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon } from '../../assets/inline-svgs'
+import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon } from '../../assets/inline-svgs'
 import { auth } from '../../services/firebase'
 import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile'
 
@@ -48,7 +49,8 @@ const Navbar = (props) => {
         });
     }
 
-    const contactMeMobileView = () => {
+    const contactMeMobileView = event => {
+        event.preventDefault()
         scrollToBottom()
         setDisplaySidebar(false)
     }
@@ -73,9 +75,14 @@ const Navbar = (props) => {
             <>
                 <div style={navbarStyle} className="pr-5 p-3">
                     <div style={{ float: 'right' }}>
-                        <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Link to="/#about-me" style={{ textDecoration: 'none' }}>
                             <span style={{ color: 'white' }}>
-                                <h5 style={{ display: 'inline' }}>Home</h5>
+                                <h5 style={{ display: 'inline' }}>About Me</h5>
+                            </span>
+                        </Link>
+                        <Link to="/#my-talks" style={{ textDecoration: 'none' }}>
+                            <span className='ml-5' style={{ color: 'white' }}>
+                                <h5 style={{ display: 'inline' }}>Talks</h5>
                             </span>
                         </Link>
                         <Link to="/blog" style={{ textDecoration: 'none' }}>
@@ -124,7 +131,8 @@ const Navbar = (props) => {
                     zIndex: '2', minHeight: '100vh', width: displaySidebar ? '250px' : '0',
                     backgroundColor: 'black', position: 'fixed', transition: '0.3s'
                 }}>
-                    <MobileNavbarTile icon={getHomeIcon('white')} label="Home" highlightNavigation={location.pathname === '/'} route="/" displaySidebar={displaySidebar} />
+                    <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="/#about-me" displaySidebar={displaySidebar} />
+                    <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="/#my-talks" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={location.pathname.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={location.pathname === '/projects'} route="/projects" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
