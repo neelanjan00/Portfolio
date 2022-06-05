@@ -4,6 +4,7 @@ import Navbar from '../components/navbar/navbar'
 import Footer from '../components/footer/footer'
 
 import { db } from '../services/firebase'
+import { getLoadingSpinner } from '../assets/inline-svgs'
 
 const Blogs = () => {
 
@@ -30,9 +31,9 @@ const Blogs = () => {
             <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
             <div>
                 {
-                    blogData.map(blog => {
+                    blogData.length !== 0 ? blogData.map(blog => {
                         return <BlogTile blogData={blog} key={blog.dateTime} />
-                    })
+                    }) : <div className='mt-5'>{getLoadingSpinner()}</div>
                 }
             </div>
             <Footer />

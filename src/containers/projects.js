@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/navbar/navbar'
 import Footer from '../components/footer/footer'
 import ProjectsPreview from '../components/projects-preview/projects-preview'
+import { getLoadingSpinner } from '../assets/inline-svgs'
 
 const Projects = () => {
 
@@ -19,6 +20,8 @@ const Projects = () => {
             }))
             setProjects(newProjects)
         })
+
+        return () => setProjects([])
     }, [])
 
     return ( 
@@ -27,7 +30,7 @@ const Projects = () => {
 
             <div className="container">
                 <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY PROJECTS</h1>
-                { projects.map((project, i) => {
+                { projects.length !== 0 ? projects.map((project, i) => {
                     if(i % 2 === 0)
                         return <ProjectsPreview orientation="lr"
                                                 title = {project.title}
@@ -46,7 +49,8 @@ const Projects = () => {
                                                 github = { project.github ? project.github : null}
                                                 deployedLink = { project.deployedLink ? project.deployedLink : null}
                                                 key = {project.id} />                     
-                })}
+                }) : <div className='mt-5'>{getLoadingSpinner()}</div>
+                }
             </div>
             <Footer />
         </div>
