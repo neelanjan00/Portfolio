@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import ProjectsPreview from '../components/projects-preview/projects-preview'
-import { getGithubIcon, getLinkedInIcon, getEmailIcon, getTwitterIcon } from '../assets/inline-svgs'
+import { getGithubIcon, getLinkedInIcon, getEmailIcon, getTwitterIcon, getLoadingSpinner } from '../assets/inline-svgs'
 import useWindowSize from '../hooks/useWindow'
 
 import 'swiper/swiper.scss'
@@ -178,7 +178,7 @@ const Home = () => {
       <section style={{ minHeight: width >= 1280 ? '65vh' : '95vh' }} id="my-talks">
         <div className='container pt-5'>
           <h1 style={{'fontWeight': 800}} className='mt-5 mt-md-0 pt-5 pb-3'>MY TALKS</h1>
-          <Swiper
+          { projects.length !== 0 ? <Swiper
             parallax={true}
             spaceBetween={90}
             slidesPerView={width >= 1280 ? 2 : 1}
@@ -191,7 +191,7 @@ const Home = () => {
                 </div>
               </SwiperSlide>
             })}
-          </Swiper>
+          </Swiper> : <div className='mt-5'>{getLoadingSpinner()}</div>}
         </div>
       </section>
 
@@ -202,7 +202,7 @@ const Home = () => {
         <div style={{ backgroundColor: 'rgb(230, 230, 230)' }}>
           <div className="container">
             <h1 style={{ textAlign: 'center', fontWeight: 800 }} className="m-0">MY PROJECTS</h1>
-            {projects.map((project, i) => {
+            { projects.length !== 0 ? projects.map((project, i) => {
               if (i % 2 === 0)
                 return <ProjectsPreview orientation="lr"
                   title={project.title}
@@ -221,7 +221,7 @@ const Home = () => {
                   github={project.github ? project.github : null}
                   deployedLink={project.deployedLink ? project.deployedLink : null}
                   key={project.id} />
-            })}
+            }) : <div className='my-5'>{getLoadingSpinner()}</div>}
             <center>
               <button onClick={() => history.push('/projects')}
                 className="btn btn-outline-secondary"
