@@ -98,7 +98,12 @@ function Blog() {
     return (
         <div>
             <Navbar />
-            <div style={{position: 'sticky', top: '50%', marginLeft: '7%', maxWidth: '100px', display: scrollHeight !== 0 && scrollHeight > topOffset && scrollHeight < bottomOffset-650 && width > 1280 ? 'block' : 'none'}}>
+            <div style={{
+                position: 'sticky', 
+                top: '38%', 
+                marginLeft: '7%', 
+                maxWidth: '100px', 
+                display: scrollHeight !== 0 && scrollHeight > topOffset && scrollHeight < bottomOffset-650 && width > 1280 ? 'block' : 'none'}}>
                 <div className='py-3'>{getTwitterIcon('black')}</div>
                 <div className='py-3'>{getLinkedInIcon('black')}</div>
                 <div className='py-3'>{getFacebookIcon('black')}</div>
