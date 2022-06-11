@@ -9,7 +9,7 @@ import useWindowSize from '../../hooks/useWindow'
 import useOutsideClick from '../../hooks/useClickOutside'
 import Header from '../../headers/default-header'
 
-const Navbar = (props) => {
+const Navbar = () => {
 
     var [displaySidebar, setDisplaySidebar] = useState(false)
     var [topScroll, setTopScroll] = useState(window.scrollY)
@@ -25,7 +25,7 @@ const Navbar = (props) => {
     const isClickedOutside = useOutsideClick(sidebarRef, hamburgerIconRef)
 
     useEffect(() => {
-        if(isClickedOutside && displaySidebar)
+        if (isClickedOutside && displaySidebar)
             setDisplaySidebar(false)
     }, [isClickedOutside, displaySidebar])
 
@@ -76,6 +76,11 @@ const Navbar = (props) => {
             <>
                 <Header />
                 <div style={navbarStyle} className="pr-5 p-3">
+                    <HashLink smooth to="/#" style={{ textDecoration: 'none' }}>
+                        <span style={{ color: 'white' }}>
+                            <h3 style={{ fontWeight: '500', display: 'inline' }}>Neelanjan Manna</h3>
+                        </span>
+                    </HashLink>
                     <div style={{ float: 'right' }}>
                         <HashLink smooth to="/#about-me" style={{ textDecoration: 'none' }}>
                             <span style={{ color: 'white' }}>
