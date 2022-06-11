@@ -139,6 +139,11 @@ const Navbar = () => {
                     zIndex: '2', minHeight: '100vh', width: displaySidebar ? '250px' : '0',
                     backgroundColor: 'black', position: 'fixed', transition: '0.3s'
                 }}>
+                    <div style={{display: 'grid', placeItems: 'center'}} className='my-5'>
+                        <HashLink smooth to="/#" style={{ textDecoration: 'none' }}>
+                            <img className='img-fluid' style={{width: '100px'}} src='/favicon.ico' alt='logo' />
+                        </HashLink>
+                    </div>
                     <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="/#about-me" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="/#my-talks" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={location.pathname.includes('blog')} route="/blog#" displaySidebar={displaySidebar} />
