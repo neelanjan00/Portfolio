@@ -172,20 +172,6 @@ var getTalksIcon = color => {
     }
 }
 
-var getShareLinkIcon = color => {
-    switch(color) {
-        case "white": 
-            return <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff" className="bi bi-share-fill ml-3" viewBox="0 0 16 16">
-                <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
-            </svg>
-
-        default:
-            return <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000" className="bi bi-share-fill ml-3" viewBox="0 0 16 16">
-                <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
-            </svg>
-    }
-}
-
 var getFacebookIcon = color => {
     switch(color) {
         case "white":
@@ -200,6 +186,21 @@ var getFacebookIcon = color => {
     }
 }
 
+var getRedditIcon = color => {
+    switch(color) {
+        case "white":
+            return <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="#fff" className="bi bi-reddit ml-2" viewBox="0 0 16 16">
+                <path d="M6.167 8a.831.831 0 0 0-.83.83c0 .459.372.84.83.831a.831.831 0 0 0 0-1.661zm1.843 3.647c.315 0 1.403-.038 1.976-.611a.232.232 0 0 0 0-.306.213.213 0 0 0-.306 0c-.353.363-1.126.487-1.67.487-.545 0-1.308-.124-1.671-.487a.213.213 0 0 0-.306 0 .213.213 0 0 0 0 .306c.564.563 1.652.61 1.977.61zm.992-2.807c0 .458.373.83.831.83.458 0 .83-.381.83-.83a.831.831 0 0 0-1.66 0z"/>
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.828-1.165c-.315 0-.602.124-.812.325-.801-.573-1.9-.945-3.121-.993l.534-2.501 1.738.372a.83.83 0 1 0 .83-.869.83.83 0 0 0-.744.468l-1.938-.41a.203.203 0 0 0-.153.028.186.186 0 0 0-.086.134l-.592 2.788c-1.24.038-2.358.41-3.17.992-.21-.2-.496-.324-.81-.324a1.163 1.163 0 0 0-.478 2.224c-.02.115-.029.23-.029.353 0 1.795 2.091 3.256 4.669 3.256 2.577 0 4.668-1.451 4.668-3.256 0-.114-.01-.238-.029-.353.401-.181.688-.592.688-1.069 0-.65-.525-1.165-1.165-1.165z"/>
+            </svg>
+        default:
+            return <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="#000000" className="bi bi-reddit ml-2" viewBox="0 0 16 16">
+                <path d="M6.167 8a.831.831 0 0 0-.83.83c0 .459.372.84.83.831a.831.831 0 0 0 0-1.661zm1.843 3.647c.315 0 1.403-.038 1.976-.611a.232.232 0 0 0 0-.306.213.213 0 0 0-.306 0c-.353.363-1.126.487-1.67.487-.545 0-1.308-.124-1.671-.487a.213.213 0 0 0-.306 0 .213.213 0 0 0 0 .306c.564.563 1.652.61 1.977.61zm.992-2.807c0 .458.373.83.831.83.458 0 .83-.381.83-.83a.831.831 0 0 0-1.66 0z"/>
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.828-1.165c-.315 0-.602.124-.812.325-.801-.573-1.9-.945-3.121-.993l.534-2.501 1.738.372a.83.83 0 1 0 .83-.869.83.83 0 0 0-.744.468l-1.938-.41a.203.203 0 0 0-.153.028.186.186 0 0 0-.086.134l-.592 2.788c-1.24.038-2.358.41-3.17.992-.21-.2-.496-.324-.81-.324a1.163 1.163 0 0 0-.478 2.224c-.02.115-.029.23-.029.353 0 1.795 2.091 3.256 4.669 3.256 2.577 0 4.668-1.451 4.668-3.256 0-.114-.01-.238-.029-.353.401-.181.688-.592.688-1.069 0-.65-.525-1.165-1.165-1.165z"/>
+            </svg>
+    }
+}
+
 var getLoadingSpinner = () => {
     return <div style={{display: 'flex', justifyContent: 'center'}}>
         <div className="spinner-grow" style={{width: '3rem', height: '3rem'}} role="status">
@@ -208,4 +209,4 @@ var getLoadingSpinner = () => {
     </div>
 }
 
-export {getGithubIcon, getLinkedInIcon, getEmailIcon, getDeployedLinkIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getTwitterIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon, getLoadingSpinner, getShareLinkIcon, getFacebookIcon}
+export {getGithubIcon, getLinkedInIcon, getEmailIcon, getDeployedLinkIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getTwitterIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon, getLoadingSpinner, getFacebookIcon, getRedditIcon}

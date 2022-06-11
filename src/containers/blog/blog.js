@@ -10,7 +10,7 @@ import {materialDark} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import useWindowSize from '../../hooks/useWindow';
 import rehypeRaw from 'rehype-raw';
 import { getLinkedInIcon, getLoadingSpinner } from '../../assets/inline-svgs';
-import { getTwitterIcon, getFacebookIcon, getShareLinkIcon } from '../../assets/inline-svgs';
+import { getTwitterIcon, getFacebookIcon, getRedditIcon } from '../../assets/inline-svgs';
 
 import styles from './blog.module.css';
 
@@ -100,14 +100,30 @@ function Blog() {
             <Navbar />
             <div style={{
                 position: 'sticky', 
-                top: '38%', 
+                top: '37%', 
                 marginLeft: '7%', 
-                maxWidth: '100px', 
-                display: scrollHeight !== 0 && scrollHeight > topOffset && scrollHeight < bottomOffset-650 && width > 1280 ? 'block' : 'none'}}>
-                <div className='py-3'>{getTwitterIcon('black')}</div>
-                <div className='py-3'>{getLinkedInIcon('black')}</div>
-                <div className='py-3'>{getFacebookIcon('black')}</div>
-                <div className='py-3'>{getShareLinkIcon('black')}</div>
+                width: 'fit-content', 
+                display: scrollHeight !== 0 && scrollHeight > topOffset && scrollHeight < bottomOffset-1090 && width > 1280 ? 'block' : 'none'}}>
+                <div className='my-5' role='button'>
+                    <a href={'https://twitter.com/intent/tweet?text='+blogMetadata.title+' by @NeelanjanManna&url='+window.location.href} rel="noreferrer" target='_blank'>
+                        {getTwitterIcon('black')}
+                    </a>
+                </div>
+                <div className='my-5' role='button'>
+                    <a href={'https://www.linkedin.com/sharing/share-offsite/?url='+window.location.href} rel="noreferrer" target='_blank'>
+                        {getLinkedInIcon('black')}
+                    </a>
+                </div>
+                <div className='my-5' role='button'>
+                    <a href={'https://www.facebook.com/sharer/sharer.php?u='+window.location.href} rel="noreferrer" target='_blank'>
+                        {getFacebookIcon('black')}
+                    </a>
+                </div>
+                <div className='my-5' role='button'>
+                    <a href={'https://www.reddit.com/submit?url='+window.location.href+'&title='+blogMetadata.title} rel="noreferrer" target='_blank'>
+                        {getRedditIcon('black')}
+                    </a>
+                </div>
             </div>
             <div className='container'>
                 <h5>{blogMetadata.dateTime ? getDateFromDateTime(blogMetadata.dateTime) : ""}</h5>
@@ -118,6 +134,29 @@ function Blog() {
                     paddingRight: width >= 1280 ? '170px' : '0px',  
                     }} className={styles.blogPage}>
                     {blogContent ? <ReactMarkdown children={blogContent} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock} /> : getLoadingSpinner()}
+                </div>
+                <div className='mt-5' style={{display: blogContent ? 'block' : 'none'}}>
+                    <h4 className='py-4'>Share this post:</h4>
+                    <span className='mx-2 mx-sm-4 mx-lg-5' role='button'>
+                        <a href={'https://twitter.com/intent/tweet?text='+blogMetadata.title+' by @NeelanjanManna&url='+window.location.href} rel="noreferrer" target='_blank'>
+                            {getTwitterIcon('black')}
+                        </a>
+                    </span>
+                    <span className='mx-2 mx-sm-4 mx-lg-5' role='button'>
+                        <a href={'https://www.linkedin.com/sharing/share-offsite/?url='+window.location.href} rel="noreferrer" target='_blank'>
+                            {getLinkedInIcon('black')}
+                        </a>
+                    </span>
+                    <span className='mx-2 mx-sm-4 mx-lg-5' role='button'>
+                        <a href={'https://www.facebook.com/sharer/sharer.php?u='+window.location.href} rel="noreferrer" target='_blank'>
+                            {getFacebookIcon('black')}
+                        </a>
+                    </span>
+                    <span className='mx-2 mx-sm-4 mx-lg-5' role='button'>
+                        <a href={'https://www.reddit.com/submit?url='+window.location.href+'&title='+blogMetadata.title} rel="noreferrer" target='_blank'>
+                            {getRedditIcon('black')}
+                        </a>
+                    </span>
                 </div>
             </div>
             <div ref={footerRef}>
