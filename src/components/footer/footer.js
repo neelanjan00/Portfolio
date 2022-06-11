@@ -76,7 +76,7 @@ const Footer = () => {
                                             {getTwitterIcon('white')}
                                         </div>
                                     </a>
-                                    <a href="mailto:neelanjanmanna@gmail.com">
+                                    <a href="mailto:hi@neelanjan.dev" target="_blank" rel="noopener noreferrer">
                                         <div style={{'float': 'right'}}>
                                             {getEmailIcon('white')}
                                         </div>

@@ -162,7 +162,7 @@ const Home = () => {
                   <a href="https://www.twitter.com/NeelanjanManna" target="_blank" rel="noopener noreferrer">
                     {getTwitterIcon('white')}
                   </a>
-                  <a href="mailto:neelanjanmanna@gmail.com">
+                  <a href="mailto:hi@neelanjan.dev" target="_blank" rel="noopener noreferrer">
                     {getEmailIcon('white')}
                   </a>
                 </div>
