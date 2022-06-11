@@ -7,6 +7,7 @@ import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile'
 
 import useWindowSize from '../../hooks/useWindow'
 import useOutsideClick from '../../hooks/useClickOutside'
+import Header from '../../headers/default-header'
 
 const Navbar = (props) => {
 
@@ -73,6 +74,7 @@ const Navbar = (props) => {
     if (width >= 1280) {
         return (
             <>
+                <Header />
                 <div style={navbarStyle} className="pr-5 p-3">
                     <div style={{ float: 'right' }}>
                         <HashLink smooth to="/#about-me" style={{ textDecoration: 'none' }}>
@@ -118,7 +120,8 @@ const Navbar = (props) => {
         )
     } else {
         return (
-            <React.Fragment>
+            <>
+                <Header />
                 <div className="p-2" ref={hamburgerIconRef} style={{
                     minWidth: '100vw', backgroundColor: 'black',
                     position: 'sticky', top: '0', zIndex: '3'
@@ -150,7 +153,7 @@ const Navbar = (props) => {
                             <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
                         </svg>
                 }
-            </React.Fragment>
+            </>
         )
     }
 }
