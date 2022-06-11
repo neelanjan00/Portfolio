@@ -93,12 +93,12 @@ const Navbar = () => {
                             </span>
                         </HashLink>
                         <HashLink smooth to="/blog#" style={{ textDecoration: 'none' }}>
-                            <span className="ml-5" style={{ color: 'white' }}>
+                            <span className="ml-5" style={{ color: 'white', textDecoration: location.pathname.includes('blog') ? 'underline' : 'none', textUnderlineOffset: '5px' }}>
                                 <h5 style={{ display: 'inline' }}>Blogs</h5>
                             </span>
                         </HashLink>
                         <HashLink smooth to="/projects#" style={{ textDecoration: 'none' }}>
-                            <span className="ml-5" style={{ color: 'white' }}>
+                            <span className="ml-5" style={{ color: 'white', textDecoration: location.pathname === '/projects' ? 'underline' : 'none', textUnderlineOffset: '5px' }}>
                                 <h5 style={{ display: 'inline' }}>Projects</h5>
                             </span>
                         </HashLink>
