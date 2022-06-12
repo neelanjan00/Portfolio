@@ -16,6 +16,7 @@ import useWindowSize from '../hooks/useWindow'
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
+import Experience from '../components/experience/experience';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
@@ -235,51 +236,7 @@ const Home = () => {
       </section>
 
       <section className="mb-5">
-        <div className="container">
-          <h1 className="pb-3" style={{ textAlign: 'center', fontWeight: 800 }}>EXPERIENCE</h1>
-          <Swiper
-            spaceBetween={30}
-            slidesPerView={width >= 1000 ? 3 : 1}
-            pagination={{ clickable: true, dynamicBullets: true  }}
-            autoplay={{ delay: 2500 }}>
-            <SwiperSlide>
-              <div className="p-3" style={{
-                minHeight: '200px',
-                backgroundColor: 'rgb(230, 230, 230)'
-              }} >
-                <h5>SDE, Harness</h5>
-                <h6>March, 2022 - Present</h6>
-                <p className="pt-2">
-                Harness is the industry's first Software Delivery Platform to use AI to simplify the DevOps processes - CI, CD, Feature Flags, Cloud Costs, Chaos Engineering and much more.
-                </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="p-3" style={{
-                minHeight: '200px',
-                backgroundColor: 'rgb(230, 230, 230)'
-              }} >
-                <h5>SDE Intern, ChaosNative</h5>
-                <h6>May, 2021 - Mar, 2022</h6>
-                <p className="pt-2">
-                  ChaosNative is the founder of the LitmusChaos project, a CNCF incubating project for performing Chaos Engineering at scale in Cloud-Native environments.
-                </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="p-3" style={{
-                minHeight: '200px',
-                backgroundColor: 'rgb(230, 230, 230)'
-              }} >
-                <h5>Project Intern, HighRadius</h5>
-                <h6>Jan, 2021 - Mar, 2021</h6>
-                <p className="pt-2">
-                  HighRadius is a Fintech SaaS company that provides AI-based Autonomous Systems to 600+ companies for automating their Accounts Receivable and Treasury processes.
-                </p>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
+        <Experience />
       </section>
 
       <Footer />
