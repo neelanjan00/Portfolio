@@ -133,7 +133,7 @@ const Home = () => {
       <section style={{ minHeight: width >= 1280 ? '65vh' : '95vh' }} id="my-talks">
         <div className='container pt-5'>
           <h1 style={{ 'fontWeight': 800 }} className='mt-5 mt-md-0 pt-5 pb-3'>MY TALKS</h1>
-          {projects.length !== 0 ? <Swiper
+          {videos.length !== 0 ? <Swiper
             parallax={true}
             spaceBetween={90}
             slidesPerView={width >= 1280 ? 2 : 1}
